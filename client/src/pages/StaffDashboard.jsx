@@ -15,7 +15,7 @@ function StaffDashboard() {
     const getQueues = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/queues"
+                `${import.meta.env.VITE_API_URL}/api/queues`
             );
 
             setQueues(response.data);
@@ -38,7 +38,7 @@ function StaffDashboard() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                `http://localhost:5000/api/tickets/queue/${queueId}/waiting`,
+                `${import.meta.env.VITE_API_URL}/api/tickets/queue/${queueId}/waiting`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -76,7 +76,7 @@ function StaffDashboard() {
             const token = localStorage.getItem("token");
 
             const response = await axios.post(
-                `http://localhost:5000/api/queues/${selectedQueue}/next`,
+                `${import.meta.env.VITE_API_URL}/api/queues/${selectedQueue}/next`,
                 {},
                 {
                     headers: {
@@ -116,7 +116,7 @@ function StaffDashboard() {
             const token = localStorage.getItem("token");
 
             await axios.patch(
-                `http://localhost:5000/api/tickets/${currentTicket._id}/complete`,
+                `${import.meta.env.VITE_API_URL}/api/tickets/${currentTicket._id}/complete`,
                 {},
                 {
                     headers: {

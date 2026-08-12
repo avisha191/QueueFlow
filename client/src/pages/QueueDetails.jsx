@@ -12,7 +12,7 @@ function QueueDetails() {
     const getQueue = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/queues"
+                `${import.meta.env.VITE_API_URL}/api/queues`
             );
 
             const foundQueue = response.data.find(
@@ -37,7 +37,7 @@ function QueueDetails() {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                `http://localhost:5000/api/queues/${id}/join`,
+                `${import.meta.env.VITE_API_URL}/api/queues/${id}/join`,
                 {},
                 {
                     headers: {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_API_URL);
 
 function MyTicket() {
     const [ticket, setTicket] = useState(null);
@@ -16,7 +16,7 @@ function MyTicket() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5000/api/tickets/my-ticket",
+                `${import.meta.env.VITE_API_URL}/api/tickets/my-ticket`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -56,7 +56,7 @@ function MyTicket() {
             const token = localStorage.getItem("token");
 
             await axios.patch(
-                `http://localhost:5000/api/tickets/${ticket.ticketId}/cancel`,
+                `${import.meta.env.VITE_API_URL}/api/tickets/${ticket.ticketId}/cancel`,
                 {},
                 {
                     headers: {

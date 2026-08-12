@@ -20,14 +20,14 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             const queueResponse = await axios.get(
-                "http://localhost:5000/api/queues"
+                 `${import.meta.env.VITE_API_URL}/api/queues`
             );
 
             setQueues(queueResponse.data);
 
             try {
                 const ticketResponse = await axios.get(
-                    "http://localhost:5000/api/tickets/my-ticket",
+                   `${import.meta.env.VITE_API_URL}/api/tickets/my-ticket`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -44,7 +44,7 @@ function Dashboard() {
             }
 
             const historyResponse = await axios.get(
-                "http://localhost:5000/api/tickets/history",
+                `${import.meta.env.VITE_API_URL}/api/tickets/history`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
